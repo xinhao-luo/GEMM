@@ -1,0 +1,120 @@
+Namespace(dataset='cora', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=1433, hidden=16, classes=7, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.004s 
+Graph(num_nodes=2708, num_edges=10556,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 1.900
+
+Namespace(dataset='citeseer', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=3703, hidden=16, classes=6, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.004s 
+Graph(num_nodes=3327, num_edges=9228,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 1.862
+
+Namespace(dataset='pubmed', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=500, hidden=16, classes=3, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.007s 
+Graph(num_nodes=19717, num_edges=99203,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 1.829
+
+Namespace(dataset='ppi', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=50, hidden=16, classes=121, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.019s 
+Graph(num_nodes=56944, num_edges=818716,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 2.002
+
+Namespace(dataset='amazon0505', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=96, hidden=16, classes=22, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.088s 
+Graph(num_nodes=410236, num_edges=4878874,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 4.676
+
+Namespace(dataset='artist', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=100, hidden=16, classes=12, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.034s 
+Graph(num_nodes=50515, num_edges=1638396,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 1.908
+
+Namespace(dataset='com-amazon', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=96, hidden=16, classes=22, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.039s 
+Graph(num_nodes=334863, num_edges=1851744,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 3.438
+
+Namespace(dataset='soc-BlogCatalog', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=128, hidden=16, classes=39, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.040s 
+Graph(num_nodes=88784, num_edges=2093195,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 3.278
+
+Namespace(dataset='amazon0601', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=96, hidden=16, classes=22, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.051s 
+Graph(num_nodes=403394, num_edges=3387388,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 4.078
+
+Namespace(dataset='PROTEINS_full', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=29, hidden=16, classes=2, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.009s 
+Graph(num_nodes=43466, num_edges=162088,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 1.852
+
+Namespace(dataset='OVCAR-8H', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=66, hidden=16, classes=2, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.074s 
+Graph(num_nodes=1889542, num_edges=3946402,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 8.278
+
+Namespace(dataset='Yeast', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=74, hidden=16, classes=2, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.074s 
+Graph(num_nodes=1710902, num_edges=3636546,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 7.450
+
+Namespace(dataset='DD', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=89, hidden=16, classes=2, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.035s 
+Graph(num_nodes=334925, num_edges=1686092,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 2.703
+
+Namespace(dataset='TWITTER-Real-Graph-Partial', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=1323, hidden=16, classes=2, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.035s 
+Graph(num_nodes=580768, num_edges=1435116,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 15.384
+
+Namespace(dataset='SW-620H', dataDir='/home/yjzhou/github/gnn/dataset/npz', gpu=0, n_epochs=200, dim=66, hidden=16, classes=2, model='gcn', training='inference', aggregator_type='mean', num_layers=1, num_heads=8, num_outheads=1, torch_profile=False, in_drop=0.0, attn_drop=0.0, negative_slope=0.2, residual=False, early_stop=False)
+dgl test start
+# Loading (npz): 0.074s 
+Graph(num_nodes=1888584, num_edges=3944206,
+      ndata_schemes={}
+      edata_schemes={})
+DGL Inference GCN (L2-H16) Time: (ms) 8.277
+
