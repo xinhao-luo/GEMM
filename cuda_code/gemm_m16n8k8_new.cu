@@ -122,29 +122,6 @@ __global__ void ada_hgemm_m64n64k128_fp16_sm89(
 
     // #pragma unroll
     for (int ko = 0; ko < K; ko += BLOCK_TILE_K) {
-
-        global_A_load_start = (global_A_load_start + BLOCK_TILE_K)     % (M * K);
-        global_B_load_start = (global_B_load_start + BLOCK_TILE_K * N) % (K * N);
-        shared_A_produce_start_addr = convert_shmem_ptr_to_uint32(a_smem + shared_A_produce_start);
-        shared_B_produce_start_addr = convert_shmem_ptr_to_uint32(b_smem + shared_B_produce_start);
-        // printf("%d, %d, \n", ko, shared_B_produce_start);
-        asm volatile(
-            "cp.async.ca.shared.global.L2::256B [%0], [%1], 16;\n"
-            "cp.async.ca.shared.global.L2::256B [%2], [%3], 16;\n"
-            :
-            : "r"(shared_A_produce_start_addr), "l"(A + global_A_load_start)
-              "r"(shared_B_produce_start_addr), "l"(B + global_B_load_start)
-        );
-
-        shared_A_produce_start_addr = convert_shmem_ptr_to_uint32(a_smem + shared_A_produce_start + (BLOCK_TILE_M / 2) * (BLOCK_TILE_K + SHARED_MEM_OFFSET));
-        shared_B_produce_start_addr = convert_shmem_ptr_to_uint32(b_smem + shared_B_produce_start + (BLOCK_TILE_K / 2) * (BLOCK_TILE_N + SHARED_MEM_OFFSET));
-        asm volatile (
-            "cp.async.ca.shared.global.L2::256B [%0], [%1], 16;\n"
-            "cp.async.ca.shared.global.L2::256B [%2], [%3], 16;\n"
-            : 
-            : "r"(shared_A_produce_start_addr), "l"(A + (global_A_load_start + (BLOCK_TILE_M / 2) * K) % (M * K)),
-              "r"(shared_B_produce_start_addr), "l"(B + (global_B_load_start + (BLOCK_TILE_K / 2) * N) % (K * N))
-        );
         // printf("bid.x: %d, bid.y: %d, tid: %d, a_smem: %f, \n", blockIdx.x, blockIdx.y, threadIdx.x, __half2float(*(a_smem + shared_A_produce_start)));
         for (int _m = 0; _m < WARP_TILE_M; _m += MMA_TILE_M) {
             for (int _n = 0; _n < WARP_TILE_N; _n += MMA_TILE_N) {
@@ -185,6 +162,35 @@ __global__ void ada_hgemm_m64n64k128_fp16_sm89(
                 }
             }
         }
+        global_A_load_start = (global_A_load_start + BLOCK_TILE_K)     % (M * K);
+        global_B_load_start = (global_B_load_start + BLOCK_TILE_K * N) % (K * N);
+        shared_A_produce_start_addr = convert_shmem_ptr_to_uint32(a_smem + shared_A_produce_start);
+        shared_B_produce_start_addr = convert_shmem_ptr_to_uint32(b_smem + shared_B_produce_start);
+        // printf("%d, %d, \n", ko, shared_B_produce_start);
+        asm volatile(
+            "cp.async.ca.shared.global.L2::256B [%0], [%1], 16;\n"
+            "cp.async.ca.shared.global.L2::256B [%2], [%3], 16;\n"
+            :
+            : "r"(shared_A_produce_start_addr), "l"(A + global_A_load_start)
+              "r"(shared_B_produce_start_addr), "l"(B + global_B_load_start)
+        );
+
+        shared_A_produce_start_addr = convert_shmem_ptr_to_uint32(a_smem + shared_A_produce_start + (BLOCK_TILE_M / 2) * (BLOCK_TILE_K + SHARED_MEM_OFFSET));
+        shared_B_produce_start_addr = convert_shmem_ptr_to_uint32(b_smem + shared_B_produce_start + (BLOCK_TILE_K / 2) * (BLOCK_TILE_N + SHARED_MEM_OFFSET));
+        asm volatile (
+            "cp.async.ca.shared.global.L2::256B [%0], [%1], 16;\n"
+            "cp.async.ca.shared.global.L2::256B [%2], [%3], 16;\n"
+            : 
+            : "r"(shared_A_produce_start_addr), "l"(A + (global_A_load_start + (BLOCK_TILE_M / 2) * K) % (M * K)),
+              "r"(shared_B_produce_start_addr), "l"(B + (global_B_load_start + (BLOCK_TILE_K / 2) * N) % (K * N))
+        );
+
+        asm volatile(
+            "ldmatrix.sync.aligned.m8n8.x2.shared.b16       {%0,%1}, [%3];\n"
+            "ldmatrix.sync.aligned.m8n8.x1.trans.shared.b16 {%2},    [%4];\n"
+            : "=r"(*(uint32_t*)(&A_frag[0])), "=r"(*(uint32_t*)(&A_frag[2])), "=r"(*(uint32_t*)(&B_frag[0]))
+            : "r"(convert_shmem_ptr_to_uint32(a_smem + shared_A_consume_start)), "r"(convert_shmem_ptr_to_uint32(b_smem + shared_B_consume_start))
+        );
     }
     // // printf("wb_idx: %d\n", wb_idx);
     uint32_t wb_idx = blockIdx.x * BLOCK_TILE_M * N + blockIdx.y * BLOCK_TILE_N + (warp_id % 4) * WARP_TILE_M * N + (warp_id / 4) * WARP_TILE_N + (lane_id / 4) * N + (lane_id % 4) * 2;
